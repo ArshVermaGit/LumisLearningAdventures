@@ -1,20 +1,22 @@
+// Assets/Scripts/Utilities/LumiSpriteGenerator.cs
 using UnityEngine;
 using System.Collections;
 using System.IO;
 
 public class LumiSpriteGenerator : MonoBehaviour
 {
-    [Header("Cute Fox Generator - Simple Cartoon Style")]
+    [Header("Lumi Character Generator - Cute Cartoon Fox")]
     public int spriteSize = 512;
     
-    [Header("Cute Fox Colors - Simple & Bright")]
-    public Color bodyColor = new Color(1f, 0.6f, 0.2f);        // Bright Orange #FF9933
-    public Color whiteColor = new Color(1f, 1f, 1f);           // Pure White #FFFFFF
-    public Color darkOrangeColor = new Color(0.8f, 0.35f, 0.15f); // Dark Orange #CC5926
-    public Color outlineColor = new Color(0f, 0f, 0f);         // Black #000000
-    public Color eyeColor = new Color(0f, 0f, 0f);             // Black #000000
-    public Color tongueColor = new Color(1f, 0.4f, 0.6f);      // Pink #FF6699
-    public Color blushColor = new Color(1f, 0.75f, 0.8f);      // Light Pink #FFBFCC
+    [Header("Cartoon Fox Colors - Based on Reference")]
+    public Color bodyColor = new Color(1f, 0.6f, 0.2f); // Bright Orange #FF9933
+    public Color darkOrangeColor = new Color(0.8f, 0.35f, 0.15f); // Dark Orange/Brown #CC5926
+    public Color accentColor = new Color(1f, 0.98f, 0.94f); // Cream White #FFFEF0
+    public Color outlineColor = new Color(0.1f, 0.1f, 0.1f); // Black outline #1A1A1A
+    public Color eyeColor = new Color(0.05f, 0.05f, 0.05f); // Very Dark #0D0D0D
+    public Color tongueColor = new Color(1f, 0.4f, 0.6f); // Pink Tongue #FF6699
+    public Color blushColor = new Color(1f, 0.75f, 0.8f); // Light Pink Blush #FFBFCC
+    public Color noseColor = new Color(0.1f, 0.1f, 0.1f); // Black Nose
     
     [Header("Animation Frame Counts")]
     public int idleFrames = 6;
@@ -28,16 +30,15 @@ public class LumiSpriteGenerator : MonoBehaviour
     public int sleepingFrames = 8;
     public int talkingFrames = 6;
     
-    [Header("Cute Proportions")]
-    public float headSize = 180f;      // Large head for cuteness
-    public float bodySize = 120f;      // Smaller body
-    public float eyeSize = 25f;        // Large expressive eyes
-    public float outlineWidth = 3f;    // Clean outline thickness
+    [Header("Character Proportions")]
+    public float outlineThickness = 3f;
+    public float headScale = 1.2f; // Large head proportion
+    public float bodyScale = 0.7f; // Smaller body
     
-    [ContextMenu("🎨 GENERATE ENHANCED LUMI ANIMATIONS")]
-    public void GenerateEnhancedLumiAnimations()
+    [ContextMenu("🎨 GENERATE ALL LUMI ANIMATIONS")]
+    public void GenerateAllLumiAnimations()
     {
-        Debug.Log("✨ Generating enhanced cute fox animations...");
+        Debug.Log("✨ Starting Lumi's magical transformation (Cartoon Style)...");
         
         GenerateLumiIdle();
         GenerateLumiHappy();
@@ -50,13 +51,13 @@ public class LumiSpriteGenerator : MonoBehaviour
         GenerateLumiSleeping();
         GenerateLumiTalking();
         
-        Debug.Log("🎉 Enhanced cute fox animations complete!");
+        Debug.Log("🎉 All Lumi animations generated! Cartoon fox ready!");
         Debug.Log("📁 Files saved to: Assets/Art/Characters/Lumi/");
     }
     
-    #region Enhanced Animation Generators
+    #region Individual Animation Generators
     
-    [ContextMenu("Generate Enhanced Idle")]
+    [ContextMenu("Generate Idle Animation")]
     public void GenerateLumiIdle()
     {
         for (int frame = 0; frame < idleFrames; frame++)
@@ -64,18 +65,19 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / idleFrames;
             
-            // Gentle breathing motion
+            // Gentle breathing and ear wiggle
             float breathe = Mathf.Sin(t * Mathf.PI * 2) * 3f;
-            float earWiggle = Mathf.Sin(t * Mathf.PI * 3) * 2f;
-            float tailSway = Mathf.Sin(t * Mathf.PI * 2) * 4f;
+            float earWiggle = Mathf.Sin(t * Mathf.PI * 3) * 1.5f;
+            float tailSway = Mathf.Sin(t * Mathf.PI * 2) * 2f;
+            float blink = (frame == idleFrames / 2) ? 0.3f : 1f; // Blink halfway
             
-            DrawCuteFox(texture, Vector2.zero, breathe, earWiggle, 0f, tailSway, 1f, false, false, 0f);
+            DrawCartoonFox(texture, Vector2.zero, breathe, earWiggle, 0f, tailSway, blink, false, false, 0f);
             SaveTexture(texture, $"Lumi_Idle_{frame:D2}");
         }
-        Debug.Log("💤 Enhanced idle: Gentle breathing with ear wiggles");
+        Debug.Log("💤 Idle animation: Breathing peacefully");
     }
     
-    [ContextMenu("Generate Enhanced Happy")]
+    [ContextMenu("Generate Happy Animation")]
     public void GenerateLumiHappy()
     {
         for (int frame = 0; frame < happyFrames; frame++)
@@ -84,19 +86,21 @@ public class LumiSpriteGenerator : MonoBehaviour
             float t = (float)frame / happyFrames;
             
             // Excited bouncing
-            float bounce = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 4)) * 25f;
-            float tailWag = Mathf.Sin(t * Mathf.PI * 8) * 20f;
-            float eyeScale = 1.2f; // Bigger eyes when happy
+            float bounce = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 4)) * 20f;
+            float tailWag = Mathf.Sin(t * Mathf.PI * 8) * 15f;
+            float earPerk = Mathf.Sin(t * Mathf.PI * 4) * 3f;
             
-            DrawCuteFox(texture, new Vector2(0, bounce), 0f, 5f, 0f, tailWag, eyeScale, true, false, 0f);
-            DrawSimpleSparkles(texture, frame);
+            DrawCartoonFox(texture, new Vector2(0, bounce), 0f, earPerk, 0f, tailWag, 1f, true, false, 0f);
+            
+            // Add sparkles
+            DrawHappySparkles(texture, frame);
             
             SaveTexture(texture, $"Lumi_Happy_{frame:D2}");
         }
-        Debug.Log("🎉 Enhanced happy: Bouncing with big eyes!");
+        Debug.Log("🎉 Happy animation: Bouncing with joy!");
     }
     
-    [ContextMenu("Generate Enhanced Walk")]
+    [ContextMenu("Generate Walk Animation")]
     public void GenerateLumiWalk()
     {
         for (int frame = 0; frame < walkFrames; frame++)
@@ -104,18 +108,18 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / walkFrames;
             
-            // Walking motion
-            float bob = Mathf.Sin(t * Mathf.PI * 2) * 6f;
-            float legMove = Mathf.Cos(t * Mathf.PI * 2) * 12f;
-            float tailSway = Mathf.Sin(t * Mathf.PI * 2) * 8f;
+            // Walking bob and movement
+            float bob = Mathf.Sin(t * Mathf.PI * 2) * 5f;
+            float legMove = Mathf.Cos(t * Mathf.PI * 2) * 10f;
+            float tailSway = Mathf.Sin(t * Mathf.PI * 2 + Mathf.PI/4) * 12f;
             
-            DrawCuteFox(texture, new Vector2(0, bob), bob * 0.5f, 0f, legMove, tailSway, 1f, false, false, 0f);
+            DrawCartoonFox(texture, new Vector2(0, bob), bob * 0.5f, 0f, legMove, tailSway, 1f, false, false, 0f);
             SaveTexture(texture, $"Lumi_Walk_{frame:D2}");
         }
-        Debug.Log("🚶 Enhanced walk: Cute trotting motion");
+        Debug.Log("🚶 Walk animation: Cute trotting");
     }
     
-    [ContextMenu("Generate Enhanced Jump")]
+    [ContextMenu("Generate Jump Animation")]
     public void GenerateLumiJump()
     {
         for (int frame = 0; frame < jumpFrames; frame++)
@@ -124,22 +128,21 @@ public class LumiSpriteGenerator : MonoBehaviour
             float t = (float)frame / (jumpFrames - 1);
             
             // Jump arc
-            float jumpHeight = Mathf.Sin(t * Mathf.PI) * 60f;
-            float earFlap = -Mathf.Sin(t * Mathf.PI) * 10f;
-            float tailUp = Mathf.Sin(t * Mathf.PI) * 25f;
-            float eyeScale = 1.1f; // Excited eyes
+            float jumpHeight = Mathf.Sin(t * Mathf.PI) * 50f;
+            float earFlap = -Mathf.Sin(t * Mathf.PI) * 8f;
+            float tailUp = Mathf.Sin(t * Mathf.PI) * 20f;
             
-            DrawCuteFox(texture, new Vector2(0, jumpHeight), 0f, earFlap, 0f, tailUp, eyeScale, false, false, 0f);
+            DrawCartoonFox(texture, new Vector2(0, jumpHeight), 0f, earFlap, 0f, tailUp, 1.1f, false, false, 0f);
             
             // Motion lines during peak
-            if (t > 0.3f && t < 0.7f) DrawSimpleMotionLines(texture);
+            if (t > 0.3f && t < 0.7f) DrawMotionLines(texture);
             
             SaveTexture(texture, $"Lumi_Jump_{frame:D2}");
         }
-        Debug.Log("🦘 Enhanced jump: Smooth jumping arc");
+        Debug.Log("🦘 Jump animation: Leaping!");
     }
     
-    [ContextMenu("Generate Enhanced Celebrate")]
+    [ContextMenu("Generate Celebrate Animation")]
     public void GenerateLumiCelebrate()
     {
         for (int frame = 0; frame < celebrateFrames; frame++)
@@ -147,20 +150,19 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / celebrateFrames;
             
-            // Celebration motion
-            float bounce = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 5)) * 20f;
-            float spin = t * 360f;
-            float eyeScale = 1.3f; // Maximum excitement
+            // Spinning celebration
+            float bounce = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 5)) * 15f;
+            float rotate = Mathf.Sin(t * Mathf.PI * 2) * 10f;
             
-            DrawCuteFox(texture, new Vector2(0, bounce), 0f, 5f, 0f, 0f, eyeScale, true, false, 0f);
-            DrawCelebrationStars(texture, frame);
+            DrawCartoonFox(texture, new Vector2(0, bounce), 0f, 5f, 0f, 0f, 1f, true, false, 0f);
+            DrawCelebrationEffects(texture, frame);
             
             SaveTexture(texture, $"Lumi_Celebrate_{frame:D2}");
         }
-        Debug.Log("🌟 Enhanced celebrate: Victory celebration!");
+        Debug.Log("🌟 Celebrate animation: Victory dance!");
     }
     
-    [ContextMenu("Generate Enhanced Thinking")]
+    [ContextMenu("Generate Thinking Animation")]
     public void GenerateLumiThinking()
     {
         for (int frame = 0; frame < thinkingFrames; frame++)
@@ -168,20 +170,19 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / thinkingFrames;
             
-            // Thinking pose
-            float headTilt = Mathf.Sin(t * Mathf.PI) * 10f;
+            // Head tilt
+            float headTilt = Mathf.Sin(t * Mathf.PI) * 8f;
             float earCurious = Mathf.Sin(t * Mathf.PI * 2) * 3f;
-            float eyeScale = 0.9f; // Squinted thinking eyes
             
-            DrawCuteFox(texture, Vector2.zero, 0f, earCurious, 0f, 0f, eyeScale, false, false, 0f);
+            DrawCartoonFox(texture, Vector2.zero, 0f, earCurious, 0f, 0f, 0.8f, false, false, 0f);
             DrawThoughtBubble(texture, frame);
             
             SaveTexture(texture, $"Lumi_Thinking_{frame:D2}");
         }
-        Debug.Log("🤔 Enhanced thinking: Curious pondering");
+        Debug.Log("🤔 Thinking animation: Curious pondering");
     }
     
-    [ContextMenu("Generate Enhanced Encourage")]
+    [ContextMenu("Generate Encourage Animation")]
     public void GenerateLumiEncourage()
     {
         for (int frame = 0; frame < encourageFrames; frame++)
@@ -189,19 +190,18 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / encourageFrames;
             
-            // Encouraging nod
-            float nod = Mathf.Sin(t * Mathf.PI * 3) * 8f;
-            float eyeScale = 1.15f; // Warm, encouraging eyes
+            // Nodding
+            float nod = Mathf.Sin(t * Mathf.PI * 3) * 6f;
             
-            DrawCuteFox(texture, new Vector2(0, nod), nod * 0.5f, 0f, 0f, 0f, eyeScale, true, false, 0f);
+            DrawCartoonFox(texture, new Vector2(0, nod), nod * 0.5f, 0f, 0f, 0f, 1f, true, false, 0f);
             DrawEncouragementHearts(texture, frame);
             
             SaveTexture(texture, $"Lumi_Encourage_{frame:D2}");
         }
-        Debug.Log("💚 Enhanced encourage: Supportive nodding");
+        Debug.Log("💚 Encourage animation: Supportive nodding");
     }
     
-    [ContextMenu("Generate Enhanced Sad")]
+    [ContextMenu("Generate Sad Animation")]
     public void GenerateLumiSad()
     {
         for (int frame = 0; frame < sadFrames; frame++)
@@ -209,20 +209,17 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / sadFrames;
             
-            // Sad expression
+            // Droopy and slow
             float slowBreathe = Mathf.Sin(t * Mathf.PI) * 2f;
-            float earDroop = -12f;
-            float tailDroop = -8f;
-            float eyeScale = 0.8f; // Smaller, sad eyes
             
-            DrawCuteFox(texture, Vector2.zero, slowBreathe, earDroop, 0f, tailDroop, eyeScale, false, true, 0f);
+            DrawCartoonFox(texture, Vector2.zero, slowBreathe, -8f, 0f, -10f, 1f, false, true, 0f);
             
             SaveTexture(texture, $"Lumi_Sad_{frame:D2}");
         }
-        Debug.Log("😢 Enhanced sad: Gentle empathy");
+        Debug.Log("😢 Sad animation: Gentle empathy");
     }
     
-    [ContextMenu("Generate Enhanced Sleeping")]
+    [ContextMenu("Generate Sleeping Animation")]
     public void GenerateLumiSleeping()
     {
         for (int frame = 0; frame < sleepingFrames; frame++)
@@ -230,18 +227,18 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / sleepingFrames;
             
-            // Sleeping breathing
+            // Peaceful breathing
             float breathe = Mathf.Sin(t * Mathf.PI * 2) * 2f;
             
-            DrawSleepingCuteFox(texture, breathe);
-            DrawSleepingZZZ(texture, frame);
+            DrawSleepingCartoonFox(texture, breathe);
+            DrawSleepingZ(texture, frame);
             
             SaveTexture(texture, $"Lumi_Sleeping_{frame:D2}");
         }
-        Debug.Log("😴 Enhanced sleeping: Peaceful rest");
+        Debug.Log("😴 Sleeping animation: Peaceful rest");
     }
     
-    [ContextMenu("Generate Enhanced Talking")]
+    [ContextMenu("Generate Talking Animation")]
     public void GenerateLumiTalking()
     {
         for (int frame = 0; frame < talkingFrames; frame++)
@@ -249,224 +246,218 @@ public class LumiSpriteGenerator : MonoBehaviour
             Texture2D texture = CreateTexture();
             float t = (float)frame / talkingFrames;
             
-            // Talking mouth movement
-            float mouthOpen = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 3)) * 0.8f;
+            // Mouth movement
+            float mouthOpen = Mathf.Abs(Mathf.Sin(t * Mathf.PI * 3)) * 0.7f;
             float earMovement = Mathf.Sin(t * Mathf.PI * 6) * 2f;
             
-            DrawCuteFox(texture, Vector2.zero, 0f, earMovement, 0f, 0f, 1f, false, false, mouthOpen);
+            DrawCartoonFox(texture, Vector2.zero, 0f, earMovement, 0f, 0f, 1f, false, false, mouthOpen);
             
             SaveTexture(texture, $"Lumi_Talking_{frame:D2}");
         }
-        Debug.Log("💬 Enhanced talking: Expressive speech");
+        Debug.Log("💬 Talking animation: Expressive speech");
     }
     
     #endregion
     
-    #region Enhanced Drawing Methods - Simple Cute Style
+    #region Core Drawing Methods - Cartoon Style
     
-    void DrawCuteFox(Texture2D tex, Vector2 offset, float breathe, float earAngle, 
-                    float legOffset, float tailAngle, float eyeScale, 
-                    bool showExcited = false, bool sadExpression = false, float mouthOpen = 0f)
+    void DrawCartoonFox(Texture2D tex, Vector2 offset, float breathe, float earAngle, 
+                        float legOffset, float tailAngle, float eyeScale, 
+                        bool showExcited = false, bool sadExpression = false, float mouthOpen = 0f)
     {
         Vector2 center = new Vector2(spriteSize / 2, spriteSize / 2) + offset;
         
-        // Drawing order: back to front
-        DrawCuteTail(tex, center + new Vector2(-40, -50 + breathe), tailAngle);
-        DrawCuteBody(tex, center + new Vector2(0, -30 + breathe));
-        DrawCuteLegs(tex, center + new Vector2(0, -80 + breathe), legOffset);
-        DrawCuteHead(tex, center + new Vector2(0, 60 + breathe));
-        DrawCuteEars(tex, center + new Vector2(0, 120 + breathe), earAngle);
-        DrawCuteFace(tex, center + new Vector2(0, 60 + breathe), eyeScale, showExcited, sadExpression, mouthOpen);
-    }
-    
-    void DrawCuteHead(Texture2D tex, Vector2 center)
-    {
-        // Large round head (main feature for cuteness)
-        DrawCircle(tex, center, (int)(headSize / 2), bodyColor);
-        DrawCircleOutline(tex, center, (int)(headSize / 2), outlineColor, (int)outlineWidth);
+        // Drawing order (back to front)
         
-        // White face area (simplified)
-        DrawCircle(tex, center + new Vector2(0, -15), (int)(headSize * 0.4f), whiteColor);
-    }
-    
-    void DrawCuteBody(Texture2D tex, Vector2 center)
-    {
-        // Simple oval body
-        DrawEllipse(tex, center, (int)(bodySize * 0.6f), (int)(bodySize * 0.5f), bodyColor);
-        DrawEllipseOutline(tex, center, (int)(bodySize * 0.6f), (int)(bodySize * 0.5f), outlineColor, (int)outlineWidth);
+        // 1. Tail (behind body)
+        DrawCartoonTail(tex, center + new Vector2(-50, -60 + breathe), tailAngle);
         
-        // White chest
-        DrawEllipse(tex, center + new Vector2(0, 10), (int)(bodySize * 0.4f), (int)(bodySize * 0.3f), whiteColor);
-    }
-    
-    void DrawCuteTail(Texture2D tex, Vector2 basePos, float angle)
-    {
-        Vector2 tailPos = basePos + new Vector2(angle * 0.3f, 0);
+        // 2. Back legs
+        DrawCartoonLeg(tex, center + new Vector2(-35, -130 + legOffset), false);
+        DrawCartoonLeg(tex, center + new Vector2(30, -130 - legOffset), false);
         
-        // Fluffy tail
-        DrawEllipse(tex, tailPos, (int)(bodySize * 0.4f), (int)(bodySize * 0.25f), bodyColor, -30f + angle);
-        DrawEllipseOutline(tex, tailPos, (int)(bodySize * 0.4f), (int)(bodySize * 0.25f), outlineColor, (int)outlineWidth, -30f + angle);
+        // 3. Body
+        DrawCartoonBody(tex, center + new Vector2(0, -40 + breathe));
         
-        // White tip
-        Vector2 tipOffset = RotatePoint(new Vector2(-35, -10), Vector2.zero, -30f + angle);
-        DrawCircle(tex, tailPos + tipOffset, (int)(bodySize * 0.15f), whiteColor);
-        DrawCircleOutline(tex, tailPos + tipOffset, (int)(bodySize * 0.15f), outlineColor, (int)outlineWidth);
-    }
-    
-    void DrawCuteEars(Texture2D tex, Vector2 basePos, float angle)
-    {
-        // Left ear
-        Vector2 leftEarTip = basePos + new Vector2(-45, 30 + angle);
-        Vector2 leftEarBase1 = basePos + new Vector2(-60, 0);
-        Vector2 leftEarBase2 = basePos + new Vector2(-30, 0);
+        // 4. Front legs
+        DrawCartoonLeg(tex, center + new Vector2(-55, -100 + legOffset * 0.5f), true);
+        DrawCartoonLeg(tex, center + new Vector2(50, -100 - legOffset * 0.5f), true);
         
-        FillTriangle(tex, leftEarTip, leftEarBase1, leftEarBase2, bodyColor);
-        DrawTriangleOutline(tex, leftEarTip, leftEarBase1, leftEarBase2, outlineColor, (int)outlineWidth);
+        // 5. Head (large proportion)
+        DrawCartoonHead(tex, center + new Vector2(0, 80 + breathe));
         
-        // Left inner ear
-        Vector2 leftInnerTip = basePos + new Vector2(-45, 20 + angle);
-        Vector2 leftInnerBase1 = basePos + new Vector2(-50, 5);
-        Vector2 leftInnerBase2 = basePos + new Vector2(-40, 5);
-        FillTriangle(tex, leftInnerTip, leftInnerBase1, leftInnerBase2, darkOrangeColor);
+        // 6. Ears
+        DrawCartoonEar(tex, center + new Vector2(-55, 165 + breathe + earAngle), true);
+        DrawCartoonEar(tex, center + new Vector2(55, 165 + breathe - earAngle), false);
         
-        // Right ear
-        Vector2 rightEarTip = basePos + new Vector2(45, 30 - angle * 0.5f);
-        Vector2 rightEarBase1 = basePos + new Vector2(30, 0);
-        Vector2 rightEarBase2 = basePos + new Vector2(60, 0);
-        
-        FillTriangle(tex, rightEarTip, rightEarBase1, rightEarBase2, bodyColor);
-        DrawTriangleOutline(tex, rightEarTip, rightEarBase1, rightEarBase2, outlineColor, (int)outlineWidth);
-        
-        // Right inner ear
-        Vector2 rightInnerTip = basePos + new Vector2(45, 20 - angle * 0.5f);
-        Vector2 rightInnerBase1 = basePos + new Vector2(40, 5);
-        Vector2 rightInnerBase2 = basePos + new Vector2(50, 5);
-        FillTriangle(tex, rightInnerTip, rightInnerBase1, rightInnerBase2, darkOrangeColor);
-    }
-    
-    void DrawCuteLegs(Texture2D tex, Vector2 center, float offset)
-    {
-        // Back legs
-        DrawEllipse(tex, center + new Vector2(-25, offset), 18, 25, bodyColor);
-        DrawEllipse(tex, center + new Vector2(25, -offset), 18, 25, bodyColor);
-        
-        // Front legs
-        DrawEllipse(tex, center + new Vector2(-40, offset * 0.5f), 15, 20, bodyColor);
-        DrawEllipse(tex, center + new Vector2(40, -offset * 0.5f), 15, 20, bodyColor);
-        
-        // Add outlines
-        DrawEllipseOutline(tex, center + new Vector2(-25, offset), 18, 25, outlineColor, (int)outlineWidth);
-        DrawEllipseOutline(tex, center + new Vector2(25, -offset), 18, 25, outlineColor, (int)outlineWidth);
-        DrawEllipseOutline(tex, center + new Vector2(-40, offset * 0.5f), 15, 20, outlineColor, (int)outlineWidth);
-        DrawEllipseOutline(tex, center + new Vector2(40, -offset * 0.5f), 15, 20, outlineColor, (int)outlineWidth);
-    }
-    
-    void DrawCuteFace(Texture2D tex, Vector2 center, float eyeScale, bool showExcited, bool sadExpression, float mouthOpen)
-    {
+        // 7. Facial features
         if (sadExpression)
         {
-            DrawSadEyes(tex, center, eyeScale);
-            DrawSadMouth(tex, center);
+            DrawSadEyes(tex, center + new Vector2(0, 75 + breathe));
+            DrawSadMouth(tex, center + new Vector2(0, 45 + breathe));
         }
         else if (mouthOpen > 0)
         {
-            DrawOpenEyes(tex, center, eyeScale);
-            DrawTalkingMouth(tex, center, mouthOpen);
-        }
-        else if (showExcited)
-        {
-            DrawExcitedEyes(tex, center, eyeScale);
-            DrawHappyMouth(tex, center, true);
+            DrawOpenEyes(tex, center + new Vector2(0, 75 + breathe), eyeScale);
+            DrawTalkingMouth(tex, center + new Vector2(0, 45 + breathe), mouthOpen);
         }
         else
         {
-            DrawNormalEyes(tex, center, eyeScale);
-            DrawHappyMouth(tex, center, false);
+            DrawHappyEyes(tex, center + new Vector2(0, 75 + breathe), eyeScale);
+            DrawHappyMouth(tex, center + new Vector2(0, 45 + breathe), showExcited);
         }
         
-        // Nose (always same)
-        DrawTriangleNose(tex, center + new Vector2(0, -5));
-        
-        // Blush marks
-        DrawCircle(tex, center + new Vector2(-35, -10), 8, blushColor);
-        DrawCircle(tex, center + new Vector2(35, -10), 8, blushColor);
+        DrawCartoonNose(tex, center + new Vector2(0, 58 + breathe));
+        DrawCartoonCheeks(tex, center + new Vector2(0, 60 + breathe));
     }
     
-    void DrawNormalEyes(Texture2D tex, Vector2 center, float scale)
+    void DrawCartoonHead(Texture2D tex, Vector2 center)
     {
-        int eyeRadius = (int)(eyeSize * scale);
+        // Large rounded head with outline
+        int headWidth = 100;
+        int headHeight = 95;
         
-        // Left eye
-        DrawCircle(tex, center + new Vector2(-25, 0), eyeRadius, Color.white);
-        DrawCircle(tex, center + new Vector2(-25, 0), eyeRadius - 2, eyeColor);
-        DrawCircleOutline(tex, center + new Vector2(-25, 0), eyeRadius, outlineColor, 2);
+        // Fill
+        DrawEllipse(tex, center, headWidth, headHeight, bodyColor);
         
-        // Right eye
-        DrawCircle(tex, center + new Vector2(25, 0), eyeRadius, Color.white);
-        DrawCircle(tex, center + new Vector2(25, 0), eyeRadius - 2, eyeColor);
-        DrawCircleOutline(tex, center + new Vector2(25, 0), eyeRadius, outlineColor, 2);
+        // White face marking (heart-shaped)
+        DrawEllipse(tex, center + new Vector2(0, -15), 70, 75, accentColor);
+        
+        // Black outline
+        DrawEllipseOutline(tex, center, headWidth + (int)outlineThickness, headHeight + (int)outlineThickness, outlineColor, (int)outlineThickness);
     }
     
-    void DrawExcitedEyes(Texture2D tex, Vector2 center, float scale)
+    void DrawCartoonBody(Texture2D tex, Vector2 center)
     {
-        int eyeRadius = (int)(eyeSize * scale);
+        int bodyWidth = 75;
+        int bodyHeight = 85;
         
-        // Larger, more open eyes
-        DrawCircle(tex, center + new Vector2(-25, 0), eyeRadius, Color.white);
-        DrawCircle(tex, center + new Vector2(-25, -2), (int)(eyeRadius * 0.7f), eyeColor);
-        DrawCircleOutline(tex, center + new Vector2(-25, 0), eyeRadius, outlineColor, 2);
+        // Main body
+        DrawEllipse(tex, center, bodyWidth, bodyHeight, bodyColor);
         
-        DrawCircle(tex, center + new Vector2(25, 0), eyeRadius, Color.white);
-        DrawCircle(tex, center + new Vector2(25, -2), (int)(eyeRadius * 0.7f), eyeColor);
-        DrawCircleOutline(tex, center + new Vector2(25, 0), eyeRadius, outlineColor, 2);
+        // White chest
+        DrawEllipse(tex, center + new Vector2(0, 5), 50, 65, accentColor);
         
-        // Sparkle dots
-        DrawCircle(tex, center + new Vector2(-20, 5), 3, Color.white);
-        DrawCircle(tex, center + new Vector2(30, 5), 3, Color.white);
+        // Body outline
+        DrawEllipseOutline(tex, center, bodyWidth + (int)outlineThickness, bodyHeight + (int)outlineThickness, outlineColor, (int)outlineThickness);
     }
     
-    void DrawSadEyes(Texture2D tex, Vector2 center, float scale)
+    void DrawCartoonEar(Texture2D tex, Vector2 basePos, bool isLeft)
     {
-        // Downturned eyes
-        int eyeWidth = (int)(eyeSize * 1.5f * scale);
+        // Large triangular ear
+        Vector2 tip = basePos + new Vector2(0, 50);
+        Vector2 leftBase = basePos + new Vector2(isLeft ? -28 : -22, -5);
+        Vector2 rightBase = basePos + new Vector2(isLeft ? 22 : 28, -5);
         
-        // Left sad eye
+        // Ear fill
+        FillTriangle(tex, tip, leftBase, rightBase, bodyColor);
+        
+        // Inner ear (darker)
+        Vector2 innerTip = basePos + new Vector2(0, 35);
+        Vector2 innerLeft = basePos + new Vector2(isLeft ? -15 : -12, 0);
+        Vector2 innerRight = basePos + new Vector2(isLeft ? 12 : 15, 0);
+        FillTriangle(tex, innerTip, innerLeft, innerRight, darkOrangeColor);
+        
+        // Ear outline
+        DrawTriangleOutline(tex, tip, leftBase, rightBase, outlineColor, (int)outlineThickness);
+    }
+    
+    void DrawHappyEyes(Texture2D tex, Vector2 center, float scale)
+    {
+        // Closed happy eyes (^ ^)
+        int eyeWidth = (int)(25 * scale);
+        int eyeHeight = (int)(3 * scale);
+        
+        // Left eye (curved up)
         for (int i = -eyeWidth/2; i <= eyeWidth/2; i++)
         {
-            float curve = (float)(i * i) / (eyeWidth/2) * 0.5f;
-            Vector2 pos = center + new Vector2(-25 + i, curve - 2);
-            DrawCircle(tex, pos, 2, eyeColor);
+            float t = (float)i / (eyeWidth/2);
+            float curve = -t * t * eyeHeight * 2;
+            Vector2 pos = center + new Vector2(-30 + i, curve);
+            DrawCircle(tex, pos, (int)(outlineThickness * 0.8f), eyeColor);
         }
         
-        // Right sad eye
+        // Right eye (curved up)
         for (int i = -eyeWidth/2; i <= eyeWidth/2; i++)
         {
-            float curve = (float)(i * i) / (eyeWidth/2) * 0.5f;
-            Vector2 pos = center + new Vector2(25 + i, curve - 2);
-            DrawCircle(tex, pos, 2, eyeColor);
+            float t = (float)i / (eyeWidth/2);
+            float curve = -t * t * eyeHeight * 2;
+            Vector2 pos = center + new Vector2(30 + i, curve);
+            DrawCircle(tex, pos, (int)(outlineThickness * 0.8f), eyeColor);
         }
     }
     
     void DrawOpenEyes(Texture2D tex, Vector2 center, float scale)
     {
-        DrawNormalEyes(tex, center, scale);
+        int eyeSize = (int)(16 * scale);
+        
+        // Left eye
+        DrawCircle(tex, center + new Vector2(-30, 0), eyeSize, Color.white);
+        DrawCircle(tex, center + new Vector2(-28, -2), (int)(eyeSize * 0.6f), eyeColor);
+        DrawCircle(tex, center + new Vector2(-32, 2), (int)(eyeSize * 0.25f), Color.white); // Shine
+        DrawCircleOutline(tex, center + new Vector2(-30, 0), eyeSize, outlineColor, 2);
+        
+        // Right eye
+        DrawCircle(tex, center + new Vector2(30, 0), eyeSize, Color.white);
+        DrawCircle(tex, center + new Vector2(28, -2), (int)(eyeSize * 0.6f), eyeColor);
+        DrawCircle(tex, center + new Vector2(26, 2), (int)(eyeSize * 0.25f), Color.white); // Shine
+        DrawCircleOutline(tex, center + new Vector2(30, 0), eyeSize, outlineColor, 2);
+    }
+    
+    void DrawSadEyes(Texture2D tex, Vector2 center)
+    {
+        // Downturned eyes
+        int eyeWidth = 20;
+        int eyeHeight = 3;
+        
+        // Left eye (curved down)
+        for (int i = -eyeWidth/2; i <= eyeWidth/2; i++)
+        {
+            float t = (float)i / (eyeWidth/2);
+            float curve = t * t * eyeHeight * 2;
+            Vector2 pos = center + new Vector2(-30 + i, curve);
+            DrawCircle(tex, pos, 2, eyeColor);
+        }
+        
+        // Right eye (curved down)
+        for (int i = -eyeWidth/2; i <= eyeWidth/2; i++)
+        {
+            float t = (float)i / (eyeWidth/2);
+            float curve = t * t * eyeHeight * 2;
+            Vector2 pos = center + new Vector2(30 + i, curve);
+            DrawCircle(tex, pos, 2, eyeColor);
+        }
+    }
+    
+    void DrawCartoonNose(Texture2D tex, Vector2 pos)
+    {
+        // Small black triangle nose
+        Vector2 top = pos;
+        Vector2 left = pos + new Vector2(-6, 8);
+        Vector2 right = pos + new Vector2(6, 8);
+        
+        FillTriangle(tex, top, left, right, noseColor);
     }
     
     void DrawHappyMouth(Texture2D tex, Vector2 center, bool showTongue)
     {
-        // Simple smile
-        int mouthWidth = 30;
+        // Wide smile
+        int mouthWidth = 35;
         
+        // Draw smile curve
         for (int i = -mouthWidth; i <= mouthWidth; i++)
         {
-            float curve = -(float)(i * i) / (mouthWidth * 0.8f);
-            Vector2 pos = center + new Vector2(i, curve - 20);
-            DrawCircle(tex, pos, 2, outlineColor);
+            float t = (float)i / mouthWidth;
+            float curve = -t * t * 15f;
+            Vector2 pos = center + new Vector2(i, curve - 8);
+            DrawCircle(tex, pos, (int)(outlineThickness * 0.9f), outlineColor);
         }
         
+        // Optional tongue
         if (showTongue)
         {
-            DrawEllipse(tex, center + new Vector2(0, -25), 10, 8, tongueColor);
+            DrawEllipse(tex, center + new Vector2(0, -15), 12, 18, tongueColor);
+            DrawEllipseOutline(tex, center + new Vector2(0, -15), 12, 18, outlineColor, 2);
         }
     }
     
@@ -477,105 +468,165 @@ public class LumiSpriteGenerator : MonoBehaviour
         
         for (int i = -mouthWidth; i <= mouthWidth; i++)
         {
-            float curve = (float)(i * i) / (mouthWidth * 0.8f) * 0.3f;
-            Vector2 pos = center + new Vector2(i, curve - 20);
+            float t = (float)i / mouthWidth;
+            float curve = t * t * 8f;
+            Vector2 pos = center + new Vector2(i, curve - 8);
             DrawCircle(tex, pos, 2, outlineColor);
         }
     }
     
     void DrawTalkingMouth(Texture2D tex, Vector2 center, float openAmount)
     {
-        // Oval mouth that changes size
-        int width = (int)(10 + openAmount * 15);
-        int height = (int)(5 + openAmount * 10);
+        // Oval mouth when talking
+        int mouthWidth = (int)(15 + openAmount * 12);
+        int mouthHeight = (int)(8 + openAmount * 15);
         
-        DrawEllipse(tex, center + new Vector2(0, -20), width, height, tongueColor);
-        DrawEllipseOutline(tex, center + new Vector2(0, -20), width, height, outlineColor, 2);
+        DrawEllipse(tex, center + new Vector2(0, -8), mouthWidth, mouthHeight, Color.black);
+        DrawEllipseOutline(tex, center + new Vector2(0, -8), mouthWidth, mouthHeight, outlineColor, 2);
+        
+        // Tongue visible when more open
+        if (openAmount > 0.5f)
+        {
+            DrawEllipse(tex, center + new Vector2(0, -12), 8, 10, tongueColor);
+        }
     }
     
-    void DrawTriangleNose(Texture2D tex, Vector2 pos)
+    void DrawCartoonCheeks(Texture2D tex, Vector2 center)
     {
-        Vector2 top = pos + new Vector2(0, 2);
-        Vector2 left = pos + new Vector2(-4, -4);
-        Vector2 right = pos + new Vector2(4, -4);
-        
-        FillTriangle(tex, top, left, right, outlineColor);
+        // Rosy blush marks
+        DrawEllipse(tex, center + new Vector2(-55, -5), 14, 10, blushColor, 0f, 0.7f);
+        DrawEllipse(tex, center + new Vector2(55, -5), 14, 10, blushColor, 0f, 0.7f);
     }
     
-    void DrawSleepingCuteFox(Texture2D tex, float breathe)
+    void DrawCartoonLeg(Texture2D tex, Vector2 pos, bool isFront)
     {
-        Vector2 center = new Vector2(spriteSize / 2, spriteSize / 2 - 10);
+        // Rounded leg
+        DrawEllipse(tex, pos, 22, 35, bodyColor);
         
-        // Curled sleeping position
-        DrawEllipse(tex, center, (int)(bodySize * 0.8f), (int)(bodySize * 0.6f), bodyColor, 15f);
-        DrawEllipseOutline(tex, center, (int)(bodySize * 0.8f), (int)(bodySize * 0.6f), outlineColor, (int)outlineWidth, 15f);
+        // Paw pad (darker)
+        DrawEllipse(tex, pos + new Vector2(0, -8), 16, 12, darkOrangeColor);
         
-        // Head tucked in
-        DrawCircle(tex, center + new Vector2(40, 20), (int)(headSize * 0.6f), bodyColor);
-        DrawCircleOutline(tex, center + new Vector2(40, 20), (int)(headSize * 0.6f), outlineColor, (int)outlineWidth);
+        // Outline
+        DrawEllipseOutline(tex, pos, 22 + (int)outlineThickness, 35 + (int)outlineThickness, outlineColor, (int)outlineThickness);
+    }
+    
+    void DrawCartoonTail(Texture2D tex, Vector2 pos, float angle)
+    {
+        // Fluffy tail
+        Vector2 tailPos = pos + new Vector2(angle * 0.4f, angle * 0.2f);
         
-        // Closed eyes
+        // Main tail body
+        DrawEllipse(tex, tailPos, 48, 32, bodyColor, -35f + angle);
+        
+        // White tip
+        DrawCircle(tex, tailPos + RotatePoint(new Vector2(-32, -32), Vector2.zero, -35f + angle), 18, accentColor);
+        
+        // Outline
+        DrawEllipseOutline(tex, tailPos, 48 + (int)outlineThickness, 32 + (int)outlineThickness, outlineColor, (int)outlineThickness, -35f + angle);
+        DrawCircleOutline(tex, tailPos + RotatePoint(new Vector2(-32, -32), Vector2.zero, -35f + angle), 18, outlineColor, (int)outlineThickness);
+    }
+    
+    void DrawSleepingCartoonFox(Texture2D tex, float breathe)
+    {
+        Vector2 center = new Vector2(spriteSize / 2, spriteSize / 2 - 20);
+        
+        // Curled up body
+        DrawEllipse(tex, center, 120, 85, bodyColor, 10f);
+        DrawEllipse(tex, center + new Vector2(10, 0), 85, 60, accentColor, 10f);
+        
+        // Curled tail over
+        DrawEllipse(tex, center + new Vector2(-35, 35), 60, 38, bodyColor, -55f);
+        DrawCircle(tex, center + new Vector2(-50, 30), 16, accentColor);
+        
+        // Head tucked
+        DrawEllipse(tex, center + new Vector2(45, 15), 65, 70, bodyColor);
+        DrawEllipse(tex, center + new Vector2(50, 5), 45, 50, accentColor);
+        
+        // Small ears
+        DrawCartoonEar(tex, center + new Vector2(25, 60), true);
+        DrawCartoonEar(tex, center + new Vector2(65, 60), false);
+        
+        // Closed eyes (sleeping)
         for (int i = -12; i <= 12; i++)
         {
-            Vector2 leftPos = center + new Vector2(25 + i, 25 - i * i * 0.02f);
-            Vector2 rightPos = center + new Vector2(55 + i, 25 - i * i * 0.02f);
-            DrawCircle(tex, leftPos, 2, outlineColor);
-            DrawCircle(tex, rightPos, 2, outlineColor);
+            Vector2 pos = center + new Vector2(35 + i, 20 - i * i * 0.02f);
+            DrawCircle(tex, pos, 2, eyeColor);
+        }
+        for (int i = -12; i <= 12; i++)
+        {
+            Vector2 pos = center + new Vector2(60 + i, 20 - i * i * 0.02f);
+            DrawCircle(tex, pos, 2, eyeColor);
         }
         
         // Small nose
-        DrawTriangleNose(tex, center + new Vector2(40, 15));
+        DrawCartoonNose(tex, center + new Vector2(48, 10));
+        
+        // Add outlines
+        DrawEllipseOutline(tex, center, 120, 85, outlineColor, (int)outlineThickness, 10f);
+        DrawEllipseOutline(tex, center + new Vector2(45, 15), 65, 70, outlineColor, (int)outlineThickness);
     }
     
     #endregion
     
-    #region Enhanced Effect Methods
+    #region Effect Methods
     
-    void DrawSimpleSparkles(Texture2D tex, int frame)
+    void DrawHappySparkles(Texture2D tex, int frame)
     {
         System.Random rand = new System.Random(frame);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
-            Vector2 pos = new Vector2(rand.Next(100, spriteSize - 100), rand.Next(100, spriteSize - 100));
-            DrawStar(tex, pos, 4 + rand.Next(3), frame * 30f + i * 45f);
+            Vector2 pos = new Vector2(rand.Next(80, spriteSize - 80), rand.Next(80, spriteSize - 80));
+            DrawStar(tex, pos, 6 + rand.Next(4), frame * 45f + i * 30f);
         }
     }
     
-    void DrawCelebrationStars(Texture2D tex, int frame)
+    void DrawCelebrationEffects(Texture2D tex, int frame)
     {
-        System.Random rand = new System.Random(frame * 3);
+        System.Random rand = new System.Random(frame * 2);
         
-        for (int i = 0; i < 8; i++)
+        // Stars
+        for (int i = 0; i < 10; i++)
         {
             Vector2 pos = new Vector2(rand.Next(50, spriteSize - 50), rand.Next(50, spriteSize - 50));
-            DrawStar(tex, pos, 5 + rand.Next(4), frame * 45f + i * 30f);
+            DrawStar(tex, pos, 5 + rand.Next(3), frame * 60f);
+        }
+        
+        // Confetti
+        for (int i = 0; i < 12; i++)
+        {
+            Vector2 pos = new Vector2(rand.Next(0, spriteSize), rand.Next(0, spriteSize));
+            Color color = new Color(rand.Next(50, 100) / 100f, rand.Next(50, 100) / 100f, rand.Next(50, 100) / 100f);
+            DrawCircle(tex, pos, 4, color);
         }
     }
     
-    void DrawSimpleMotionLines(Texture2D tex)
+    void DrawMotionLines(Texture2D tex)
     {
         Vector2 center = new Vector2(spriteSize / 2, spriteSize / 2);
         for (int i = 0; i < 3; i++)
         {
-            Vector2 start = center + new Vector2(-60 - i * 12, 20 - i * 6);
-            Vector2 end = start + new Vector2(-20, 2);
-            DrawThickLine(tex, start, end, 2, new Color(0.5f, 0.5f, 0.5f, 0.7f));
+            Vector2 start = center + new Vector2(-70 - i * 15, 30 - i * 8);
+            Vector2 end = start + new Vector2(-25, 3);
+            DrawThickLine(tex, start, end, 2, new Color(1f, 1f, 1f, 0.6f));
         }
     }
     
     void DrawThoughtBubble(Texture2D tex, int frame)
     {
-        if (frame % 4 == 0)
+        if (frame % 3 == 0)
         {
-            Vector2 pos = new Vector2(spriteSize / 2 + 80, spriteSize / 2 + 120);
+            Vector2 pos = new Vector2(spriteSize / 2 + 90, spriteSize / 2 + 140);
             
             // Main bubble
-            DrawCircle(tex, pos, 20, Color.white);
-            DrawCircleOutline(tex, pos, 20, outlineColor, 2);
+            DrawCircle(tex, pos, 25, Color.white);
+            DrawCircleOutline(tex, pos, 25, outlineColor, 2);
             
-            // Question mark
-            DrawThickLine(tex, pos + new Vector2(0, -5), pos + new Vector2(0, 8), 3, outlineColor);
-            DrawCircle(tex, pos + new Vector2(0, -12), 3, outlineColor);
+            // Small connecting bubbles
+            DrawCircle(tex, pos + new Vector2(-15, -18), 8, Color.white);
+            DrawCircleOutline(tex, pos + new Vector2(-15, -18), 8, outlineColor, 2);
+            
+            DrawCircle(tex, pos + new Vector2(-25, -28), 5, Color.white);
+            DrawCircleOutline(tex, pos + new Vector2(-25, -28), 5, outlineColor, 2);
         }
     }
     
@@ -583,40 +634,58 @@ public class LumiSpriteGenerator : MonoBehaviour
     {
         if (frame % 2 == 0)
         {
-            Vector2 pos = new Vector2(spriteSize / 2 - 60, spriteSize / 2 + 100);
-            DrawSimpleHeart(tex, pos, 12);
+            Vector2 pos = new Vector2(spriteSize / 2 - 75, spriteSize / 2 + 110);
+            DrawHeart(tex, pos, 14);
+            
+            if (frame % 4 == 0)
+            {
+                DrawHeart(tex, pos + new Vector2(30, 20), 10);
+            }
         }
     }
     
-    void DrawSimpleHeart(Texture2D tex, Vector2 center, int size)
+    void DrawHeart(Texture2D tex, Vector2 center, int size)
     {
-        // Simple heart shape
-        DrawCircle(tex, center + new Vector2(-size/3, size/3), size/2, new Color(1f, 0.3f, 0.4f));
-        DrawCircle(tex, center + new Vector2(size/3, size/3), size/2, new Color(1f, 0.3f, 0.4f));
+        // Two circles for top of heart
+        DrawCircle(tex, center + new Vector2(-size / 3, size / 3), size / 2, new Color(1f, 0.3f, 0.4f, 0.85f));
+        DrawCircle(tex, center + new Vector2(size / 3, size / 3), size / 2, new Color(1f, 0.3f, 0.4f, 0.85f));
         
-        Vector2 bottom = center + new Vector2(0, -size/2);
-        FillTriangle(tex, center + new Vector2(-size/2, size/4), center + new Vector2(size/2, size/4), bottom, new Color(1f, 0.3f, 0.4f));
+        // Triangle for bottom
+        FillTriangle(tex, 
+            center + new Vector2(-size / 2, size / 4), 
+            center + new Vector2(size / 2, size / 4), 
+            center + new Vector2(0, -size), 
+            new Color(1f, 0.3f, 0.4f, 0.85f));
+        
+        // Outline
+        DrawCircleOutline(tex, center + new Vector2(-size / 3, size / 3), size / 2, new Color(0.8f, 0.2f, 0.3f), 2);
+        DrawCircleOutline(tex, center + new Vector2(size / 3, size / 3), size / 2, new Color(0.8f, 0.2f, 0.3f), 2);
     }
     
-    void DrawSleepingZZZ(Texture2D tex, int frame)
+    void DrawSleepingZ(Texture2D tex, int frame)
     {
-        float offset = frame * 8f;
-        Vector2 basePos = new Vector2(spriteSize / 2 + 80, spriteSize / 2 + 100 - offset);
+        float offset = frame * 12f;
+        Vector2 basePos = new Vector2(spriteSize / 2 + 95, spriteSize / 2 + 140 - offset);
         
-        if (offset < 60)
+        if (offset < 90)
         {
-            DrawZLetter(tex, basePos, 12);
-            if (offset > 20) DrawZLetter(tex, basePos + new Vector2(15, 20), 10);
-            if (offset > 40) DrawZLetter(tex, basePos + new Vector2(30, 40), 8);
+            DrawZLetter(tex, basePos, 16);
+            if (offset > 25) DrawZLetter(tex, basePos + new Vector2(18, 28), 13);
+            if (offset > 50) DrawZLetter(tex, basePos + new Vector2(36, 56), 10);
         }
     }
     
     void DrawZLetter(Texture2D tex, Vector2 pos, int size)
     {
-        Color zColor = new Color(0.6f, 0.7f, 1f, 0.8f);
+        Color zColor = new Color(0.5f, 0.6f, 0.9f, 0.75f);
         
+        // Top horizontal line
         DrawThickLine(tex, pos, pos + new Vector2(size, 0), 3, zColor);
+        
+        // Diagonal line
         DrawThickLine(tex, pos + new Vector2(size, 0), pos + new Vector2(0, size), 3, zColor);
+        
+        // Bottom horizontal line
         DrawThickLine(tex, pos + new Vector2(0, size), pos + new Vector2(size, size), 3, zColor);
     }
     
@@ -630,17 +699,20 @@ public class LumiSpriteGenerator : MonoBehaviour
             points[i] = center + new Vector2(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius);
         }
         
-        Color starColor = new Color(1f, 0.9f, 0.3f); // Yellow star
+        Color starColor = new Color(1f, 0.85f, 0.2f); // Gold color
         
         for (int i = 0; i < 10; i++)
         {
             FillTriangle(tex, center, points[i], points[(i + 1) % 10], starColor);
         }
+        
+        // Star center highlight
+        DrawCircle(tex, center, size / 3, Color.white);
     }
     
     #endregion
     
-    #region Utility Methods (Same as before)
+    #region Utility Drawing Methods
     
     Texture2D CreateTexture()
     {
@@ -805,6 +877,22 @@ public class LumiSpriteGenerator : MonoBehaviour
             Vector2 pixel = Vector2.Lerp(p1, p2, t);
             DrawCircle(tex, pixel, thickness, color);
         }
+    }
+    
+    Vector2[] RotatePoints(Vector2[] points, Vector2 pivot, float angle)
+    {
+        Vector2[] rotated = new Vector2[points.Length];
+        float rad = angle * Mathf.Deg2Rad;
+        
+        for (int i = 0; i < points.Length; i++)
+        {
+            Vector2 dir = points[i] - pivot;
+            rotated[i] = pivot + new Vector2(
+                dir.x * Mathf.Cos(rad) - dir.y * Mathf.Sin(rad),
+                dir.x * Mathf.Sin(rad) + dir.y * Mathf.Cos(rad)
+            );
+        }
+        return rotated;
     }
     
     Vector2 RotatePoint(Vector2 point, Vector2 pivot, float angle)

@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 3416364950262527064
     second: Lumi_Happy_07_3
-  - first:
-      213: -2559099663971242246
-    second: Lumi_Happy_07_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -58,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -84,10 +81,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,10 +125,10 @@ TextureImporter:
       name: Lumi_Happy_07_0
       rect:
         serializedVersion: 2
-        x: 108
-        y: 391
-        width: 11
-        height: 13
+        x: 87
+        y: 406
+        width: 16
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +147,10 @@ TextureImporter:
       name: Lumi_Happy_07_1
       rect:
         serializedVersion: 2
-        x: 158
-        y: 172
-        width: 193
-        height: 269
+        x: 139
+        y: 104
+        width: 225
+        height: 395
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +169,10 @@ TextureImporter:
       name: Lumi_Happy_07_2
       rect:
         serializedVersion: 2
-        x: 360
-        y: 235
-        width: 12
-        height: 12
+        x: 371
+        y: 231
+        width: 17
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +191,10 @@ TextureImporter:
       name: Lumi_Happy_07_3
       rect:
         serializedVersion: 2
-        x: 111
-        y: 209
-        width: 12
-        height: 12
+        x: 91
+        y: 200
+        width: 15
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,33 +209,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Lumi_Happy_07_4
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 129
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: afe2c201a604c7cd0800000000000000
-      internalID: -2559099663971242246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -252,7 +227,6 @@ TextureImporter:
       Lumi_Happy_07_1: -5721287583566040753
       Lumi_Happy_07_2: 2380639736921343746
       Lumi_Happy_07_3: 3416364950262527064
-      Lumi_Happy_07_4: -2559099663971242246
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

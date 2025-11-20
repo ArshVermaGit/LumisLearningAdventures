@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: 3179933723950458689
     second: Lumi_Sleeping_05_0
+  - first:
+      213: -981011208122430103
+    second: Lumi_Sleeping_05_1
+  - first:
+      213: -4146553209406372551
+    second: Lumi_Sleeping_05_2
+  - first:
+      213: 3355223023132705448
+    second: Lumi_Sleeping_05_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,10 +81,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,10 +125,10 @@ TextureImporter:
       name: Lumi_Sleeping_05_0
       rect:
         serializedVersion: 2
-        x: 158
-        y: 154
-        width: 251
-        height: 225
+        x: 383
+        y: 388
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,11 +143,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Lumi_Sleeping_05_1
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 360
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d8f2bf08fb262f0800000000000000
+      internalID: -981011208122430103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Sleeping_05_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 146
+        width: 247
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935c31f43db7476c0800000000000000
+      internalID: -4146553209406372551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Sleeping_05_3
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 332
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a289041095209e20800000000000000
+      internalID: 3355223023132705448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -149,6 +224,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lumi_Sleeping_05_0: 3179933723950458689
+      Lumi_Sleeping_05_1: -981011208122430103
+      Lumi_Sleeping_05_2: -4146553209406372551
+      Lumi_Sleeping_05_3: 3355223023132705448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

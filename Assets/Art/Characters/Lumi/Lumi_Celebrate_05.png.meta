@@ -26,6 +26,24 @@ TextureImporter:
   - first:
       213: -6898982834372654302
     second: Lumi_Celebrate_05_7
+  - first:
+      213: -7429568723703276085
+    second: Lumi_Celebrate_05_8
+  - first:
+      213: -3335900470024963749
+    second: Lumi_Celebrate_05_9
+  - first:
+      213: 7866157067216099422
+    second: Lumi_Celebrate_05_10
+  - first:
+      213: -6927430097580749438
+    second: Lumi_Celebrate_05_11
+  - first:
+      213: 5534120366600713883
+    second: Lumi_Celebrate_05_12
+  - first:
+      213: -3074112588327233836
+    second: Lumi_Celebrate_05_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -67,7 +85,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,10 +111,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,10 +155,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_0
       rect:
         serializedVersion: 2
-        x: 300
-        y: 441
-        width: 16
-        height: 15
+        x: 106
+        y: 464
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,10 +177,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_1
       rect:
         serializedVersion: 2
-        x: 357
-        y: 447
-        width: 13
-        height: 14
+        x: 139
+        y: 99
+        width: 225
+        height: 397
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +199,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_2
       rect:
         serializedVersion: 2
-        x: 158
-        y: 167
-        width: 193
-        height: 269
+        x: 487
+        y: 440
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +221,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_3
       rect:
         serializedVersion: 2
-        x: 376
-        y: 186
-        width: 10
-        height: 10
+        x: 435
+        y: 352
+        width: 13
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +243,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_4
       rect:
         serializedVersion: 2
-        x: 433
-        y: 157
-        width: 12
-        height: 12
+        x: 442
+        y: 316
+        width: 9
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,10 +265,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_5
       rect:
         serializedVersion: 2
-        x: 276
-        y: 134
-        width: 12
-        height: 12
+        x: 88
+        y: 248
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,10 +287,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_6
       rect:
         serializedVersion: 2
-        x: 209
-        y: 114
-        width: 12
-        height: 12
+        x: 387
+        y: 252
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,10 +309,10 @@ TextureImporter:
       name: Lumi_Celebrate_05_7
       rect:
         serializedVersion: 2
-        x: 76
-        y: 93
-        width: 16
-        height: 16
+        x: 410
+        y: 172
+        width: 9
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,11 +327,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_8
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 155
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd505dfb9ed4e890800000000000000
+      internalID: -7429568723703276085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_9
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 121
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b597a16623084b1d0800000000000000
+      internalID: -3335900470024963749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_10
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 97
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5818da0d243a2d60800000000000000
+      internalID: 7866157067216099422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_11
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 72
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28d89538703dcdf90800000000000000
+      internalID: -6927430097580749438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_12
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 30
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b967d7307252dcc40800000000000000
+      internalID: 5534120366600713883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Celebrate_05_13
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 39
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6d23563ee8655d0800000000000000
+      internalID: -3074112588327233836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -325,12 +475,18 @@ TextureImporter:
     nameFileIdTable:
       Lumi_Celebrate_05_0: -7628440274712751699
       Lumi_Celebrate_05_1: -6915406090034394522
+      Lumi_Celebrate_05_10: 7866157067216099422
+      Lumi_Celebrate_05_11: -6927430097580749438
+      Lumi_Celebrate_05_12: 5534120366600713883
+      Lumi_Celebrate_05_13: -3074112588327233836
       Lumi_Celebrate_05_2: 6410794180147037575
       Lumi_Celebrate_05_3: 286633049900275536
       Lumi_Celebrate_05_4: 6544142931585025749
       Lumi_Celebrate_05_5: -2686391263092384723
       Lumi_Celebrate_05_6: 3417372193292653554
       Lumi_Celebrate_05_7: -6898982834372654302
+      Lumi_Celebrate_05_8: -7429568723703276085
+      Lumi_Celebrate_05_9: -3335900470024963749
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

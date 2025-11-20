@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 2929165962971340715
     second: Lumi_Jump_02_0
+  - first:
+      213: 7084514724017384349
+    second: Lumi_Jump_02_1
+  - first:
+      213: -7419417351379331648
+    second: Lumi_Jump_02_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,10 +78,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,10 +122,10 @@ TextureImporter:
       name: Lumi_Jump_02_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 204
-        width: 202
-        height: 268
+        x: 128
+        y: 267
+        width: 32
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,11 +140,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Lumi_Jump_02_1
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 275
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9ba41b2b90415260800000000000000
+      internalID: 7084514724017384349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lumi_Jump_02_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 131
+        width: 215
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c55aaa8a3fe80990800000000000000
+      internalID: -7419417351379331648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -149,6 +199,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lumi_Jump_02_0: 2929165962971340715
+      Lumi_Jump_02_1: 7084514724017384349
+      Lumi_Jump_02_2: -7419417351379331648
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
